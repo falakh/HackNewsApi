@@ -5,19 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
   <ProgressBar
       android:id="@+id/pbLinear"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:indeterminate="true"
-  style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+      style="@style/Widget.AppCompat.ProgressBar.Horizontal"
       android:visibility="visible" />
-<TextView
-    android:id="@+id/tvStarId"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+
+  <LinearLayout
+      android:layout_below="@id/pbLinear"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:id="@+id/llHolder">
+
+    <TextView
+        android:text="Stared"
+        android:textStyle="bold"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvStarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="4dp"
+        android:layout_height="4dp" />
+  </LinearLayout>
+
   <androidx.recyclerview.widget.RecyclerView
-      android:layout_below="@id/tvStarId"
+      android:layout_below="@id/llHolder"
       android:id="@+id/rvNewsList"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
       android:layout_height="match_parent"

@@ -8,27 +8,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.newsproject.adapter.NewsLIstAdapter
+import com.example.newsproject.repositori.DataRepository
 import com.example.newsproject.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var mainActivityViewModel : MainActivityViewModel;
+    lateinit var mainActivityViewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainActivityViewModel =  ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
         mainActivityViewModel.getNewsLis().observe(this, Observer {
             rvNewsList.adapter = (NewsLIstAdapter(it))
-            if(it != null){
+            if (it != null) {
                 pbLinear.visibility = View.GONE
-            }else{
+            } else {
                 pbLinear.visibility = View.VISIBLE
             }
         })
-        mainActivityViewModel.getPickTittle().observe(this, Observer {
-            if(it!=null){
+        DataRepository.mCurrentNews.observe(this, Observer {
+            if (it != null) {
                 tvStarId.text = it.title
-            }else{
+            } else {
                 tvStarId.visibility = View.GONE
             }
         })
@@ -36,9 +37,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
-    }
 }

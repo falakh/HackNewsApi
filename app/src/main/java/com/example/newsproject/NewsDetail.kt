@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.newsproject.adapter.KomenLIstAdapter
 import com.example.newsproject.model.NewsDetailPojo
+import com.example.newsproject.repositori.DataRepository
 import com.example.newsproject.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_news_detail.*
 import java.text.SimpleDateFormat
@@ -36,8 +37,12 @@ class NewsDetail : AppCompatActivity() {
             textViewJudul.text = title
             rvKomenList.adapter = KomenLIstAdapter(kids ?: (listOf()))
             btnStar.setOnClickListener {
-                ViewModelProviders.of(this@NewsDetail).get(MainActivityViewModel::class.java).starANews(newsDetail)
-                Toast.makeText(this@NewsDetail,"Judl berhasil ditambahkan",Toast.LENGTH_LONG).show()
+                DataRepository.starCurrentNews(newsDetail)
+                Toast.makeText(
+                    this@NewsDetail,
+                    "Judul ${newsDetail.title}berhasil ditambahkan",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
